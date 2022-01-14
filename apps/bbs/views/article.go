@@ -5,7 +5,6 @@ import (
 	"webtest/core/response"
 	"webtest/core/router"
 	"webtest/core/view"
-	"webtest/middlewares"
 )
 
 type ArticleView struct {
@@ -39,8 +38,9 @@ func (*ArticleView) DELETE(c *gin.Context) {
 }
 
 func (*ArticleView) Middlewares(method string) router.M {
+	//为POST请求添加中间件
 	if method == "POST" {
-		return router.M{middlewares.RouteError}
+		return router.M{}
 	}
 	return nil
 }
